@@ -84,6 +84,7 @@
     "chrono-node": "2.6.3",
     "city-timezones": "1.2.1",
     "crypto-js": "4.1.1",
+    "css-select": "^5.1.0",
     "currency-symbol-map": "5.1.0",
     "dayjs": "1.11.7",
     "dotenv": "16.0.3",
