@@ -5,7 +5,7 @@ services:
         # two ways to enable puppeteer:
         # * comment out marked lines, then use this image instead: diygod/rsshub:chromium-bundled
         # * (consumes more disk space and memory) leave everything unchanged
-        image: diygod/rsshub
+        image: zenghongtu/rsshub
         restart: always
         ports:
             - '1200:1200'
@@ -13,18 +13,18 @@ services:
             NODE_ENV: production
             CACHE_TYPE: redis
             REDIS_URL: 'redis://redis:6379/'
-            PUPPETEER_WS_ENDPOINT: 'ws://browserless:3000'  # marked
+            PUPPETEER_WS_ENDPOINT: 'ws://browserless:3000' # marked
         depends_on:
             - redis
-            - browserless  # marked
+            - browserless # marked
 
-    browserless:  # marked
-        image: browserless/chrome  # marked
-        restart: always  # marked
-        ulimits:  # marked
-          core:  # marked
-            hard: 0  # marked
-            soft: 0  # marked
+    browserless: # marked
+        image: browserless/chrome # marked
+        restart: always # marked
+        ulimits: # marked
+            core: # marked
+                hard: 0 # marked
+                soft: 0 # marked
 
     redis:
         image: redis:alpine
