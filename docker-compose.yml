@@ -10,6 +10,15 @@ services:
         ports:
             - '1200:1200'
         environment:
+            # https://docs.rsshub.app/en/install/#configuration
+            # www.example.com 或者 *
+            ALLOW_ORIGIN: ${ALLOW_ORIGIN}
+            # Http basic authentication 用户名，默认为 usernam3，请务必修改
+            HTTP_BASIC_AUTH_NAME: ${HTTP_BASIC_AUTH_NAME}
+            # Http basic authentication 密码，默认为 passw0rd，请务必修改
+            HTTP_BASIC_AUTH_PASS: ${HTTP_BASIC_AUTH_PASS}
+            # 访问密钥 https://docs.rsshub.app/install/#pei-zhi-fang-wen-kong-zhi-pei-zhi-fang-wen-mi-yao-ma
+            ACCESS_KEY: ${ACCESS_KEY}
             NODE_ENV: production
             CACHE_TYPE: redis
             REDIS_URL: 'redis://redis:6379/'
