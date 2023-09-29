@@ -3,7 +3,7 @@ name: format
 on:
   push:
     branches:
-      - master
+      - rssify
 
 permissions:
   contents: read
@@ -11,7 +11,7 @@ permissions:
 jobs:
   format:
     permissions:
-      contents: write  # for Git to git push
+      contents: write # for Git to git push
     name: Auto format
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: lts/*
-          cache: 'pnpm'
+          cache: "pnpm"
       - run: pnpm i
       - run: pnpm i
         working-directory: website

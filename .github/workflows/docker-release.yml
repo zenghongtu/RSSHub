@@ -1,18 +1,18 @@
-name: '[docker] CI for releases'
+name: "[docker] CI for releases"
 
 on:
   push:
     branches:
-      - master
+      - rssify
     paths:
-      - '.github/workflows/docker-release.yml'
-      - 'lib/**'
-      - '!**/maintainer.js'
-      - '!**/radar.js'
-      - '!**/radar-rules.js'
-      - '!lib/v2/test/**'
-      - '!test/**'
-      - 'Dockerfile'
+      - ".github/workflows/docker-release.yml"
+      - "lib/**"
+      - "!**/maintainer.js"
+      - "!**/radar.js"
+      - "!**/radar-rules.js"
+      - "!lib/v2/test/**"
+      - "!test/**"
+      - "Dockerfile"
   workflow_dispatch: ~
 
 jobs:
@@ -92,7 +92,7 @@ jobs:
       - name: Sign the published Docker image
         if: ${{ github.event_name != 'pull_request' }}
         env:
-          COSIGN_EXPERIMENTAL: 'true'
+          COSIGN_EXPERIMENTAL: "true"
         run: echo "${{ steps.meta-ordinary.outputs.tags }}" | xargs -I {} cosign sign --yes {}@${{ steps.build-and-push.outputs.digest }}
 
       - name: Extract Docker metadata (Chromium-bundled version)
@@ -119,12 +119,12 @@ jobs:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           cache-from: |
             type=registry,ref=${{ secrets.DOCKER_USERNAME }}/rsshub:chromium-bundled
-          cache-to: type=inline,ref=${{ secrets.DOCKER_USERNAME }}/rsshub:chromium-bundled  # inline cache is enough
+          cache-to: type=inline,ref=${{ secrets.DOCKER_USERNAME }}/rsshub:chromium-bundled # inline cache is enough
 
       - name: Sign the published Docker image
         if: ${{ github.event_name != 'pull_request' }}
         env:
-          COSIGN_EXPERIMENTAL: 'true'
+          COSIGN_EXPERIMENTAL: "true"
         run: echo "${{ steps.meta-chromium-bundled.outputs.tags }}" | xargs -I {} cosign sign --yes {}@${{ steps.build-and-push-chromium.outputs.digest }}
 
   description:

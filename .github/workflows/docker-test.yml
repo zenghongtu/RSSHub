@@ -5,16 +5,16 @@ name: PR - Docker build test
 on:
   pull_request:
     branches:
-      - master
+      - rssify
     paths:
-      - '.github/workflows/docker-test.yml'
-      - 'lib/**'
-      - '!**/maintainer.js'
-      - '!**/radar.js'
-      - '!**/radar-rules.js'
-      - 'Dockerfile'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
+      - ".github/workflows/docker-test.yml"
+      - "lib/**"
+      - "!**/maintainer.js"
+      - "!**/radar.js"
+      - "!**/radar-rules.js"
+      - "Dockerfile"
+      - "package.json"
+      - "pnpm-lock.yaml"
     types: [opened, reopened, synchronize, edited]
   # Please, always create a pull request instead of push to master.
 
@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx  # needed by `cache-from`
+      - name: Set up Docker Buildx # needed by `cache-from`
         uses: docker/setup-buildx-action@v3
 
       - name: Extract Docker metadata
@@ -49,11 +49,11 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          build-args: PUPPETEER_SKIP_DOWNLOAD=0  # also test bundling Chromium
+          build-args: PUPPETEER_SKIP_DOWNLOAD=0 # also test bundling Chromium
           load: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          platforms: linux/amd64  # explicit
+          platforms: linux/amd64 # explicit
           cache-from: |
             type=registry,ref=${{ secrets.DOCKER_USERNAME }}/rsshub:chromium-bundled
             type=gha,scope=docker-release
@@ -62,10 +62,10 @@ jobs:
         if: ${{ failure() }}
         uses: actions-cool/issues-helper@v3
         with:
-          actions: 'add-labels'
+          actions: "add-labels"
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
-          labels: 'Route Test: Failed'
+          labels: "Route Test: Failed"
 
       - name: Test Docker image
         run: bash scripts/docker/test-docker.sh
