@@ -38,6 +38,9 @@ dependencies:
   crypto-js:
     specifier: 4.1.1
     version: 4.1.1
+  css-select:
+    specifier: ^5.1.0
+    version: 5.1.0
   currency-symbol-map:
     specifier: 5.1.0
     version: 5.1.0
