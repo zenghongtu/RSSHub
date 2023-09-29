@@ -47,9 +47,9 @@ services:
         privileged: true
         volumes:
             - /lib/modules:/lib/modules
-        cap_add:
-            - NET_ADMIN
-            - SYS_ADMIN
+        # cap_add:
+        #     - NET_ADMIN
+        #     - SYS_ADMIN
         sysctls:
             net.ipv6.conf.all.disable_ipv6: 0
             net.ipv4.conf.all.src_valid_mark: 1
