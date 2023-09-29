@@ -111,7 +111,7 @@ RUN \
 
 FROM node:18-bullseye-slim AS app
 
-LABEL org.opencontainers.image.authors="https://github.com/DIYgod/RSSHub"
+LABEL org.opencontainers.image.authors="https://github.com/zenghongtu/RSSHub"
 
 ENV NODE_ENV production
 ENV TZ Asia/Shanghai
