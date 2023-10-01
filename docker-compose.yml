@@ -23,7 +23,7 @@ services:
             CACHE_TYPE: redis
             REDIS_URL: 'redis://redis:6379/'
             PUPPETEER_WS_ENDPOINT: 'ws://browserless:3000' # marked
-            PROXY_URI: 'socks5://chatgpt-proxy-server-warp:65535'
+            # PROXY_URI: 'socks5://chatgpt-proxy-server-warp:65535'
         depends_on:
             - redis
             - chatgpt-proxy-server-warp
@@ -44,9 +44,9 @@ services:
             - redis-data:/data
 
     chatgpt-proxy-server-warp:
-      container_name: chatgpt-proxy-server-warp
-      image: linweiyuan/chatgpt-proxy-server-warp
-      restart: unless-stopped
+        image: linweiyuan/chatgpt-proxy-server-warp
+        container_name: chatgpt-proxy-server-warp
+        restart: unless-stopped
 
 volumes:
     redis-data:
